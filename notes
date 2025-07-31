@@ -1,0 +1,5 @@
+git add .
+git commit -m "message in short by sahil"
+git push
+
+git pull
