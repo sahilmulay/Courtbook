@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UPI Payment - CourtWale</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #111;
+      color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px 10px;
+    }
+
+    h2 {
+      color: #00ff99;
+      font-size: 26px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 0 12px rgba(0, 255, 140, 0.2);
+    }
+
+    .btn {
+      background-color: #00cc88;
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background-color: #00aa77;
+    }
+
+    .qr-img {
+      margin-top: 20px;
+      border: 1px solid #333;
+      border-radius: 12px;
+      width: 240px;
+      height: 240px;
+    }
+
+    #confirmation {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #00ff99;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .qr-img {
+        display: none;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .upi-link {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Book Your Court</h2>
+    <p>Pay ₹300 to complete your booking</p>
+
+    <!-- ✅ Mobile (Deep Link) -->
+    <div class="upi-link">
+      <a class="btn" href="upi://pay?pa=sahilamulay-1@oksbi&pn=Sahil%20Mulay&am=300&tn=Badminton%20Court%20Booking">Pay Now via UPI</a>
+    </div>
+
+    <!-- ✅ PC (QR Code) -->
+    <div class="pc-flow">
+      <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=upi://pay?pa=sahilamulay-1@oksbi&pn=Sahil%20Mulay&am=300&tn=Badminton%20Court%20Booking" alt="Scan UPI QR">
+      <p>Scan this QR code with your UPI app</p>
+    </div>
+
+    <!-- ✅ Manual Payment Confirmation Button -->
+    <button class="btn" onclick="showConfirmation()">I’ve Made the Payment</button>
+
+    <div id="confirmation">
+      ✅ Thanks! Owner will confirm shortly.
+    </div>
+  </div>
+
+  <script>
+    function showConfirmation() {
+      document.getElementById('confirmation').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

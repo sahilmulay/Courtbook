@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Venue Booking – CourtWale</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #121212;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .container {
+      background-color: #1e1e1e;
+      padding: 2rem;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #00ffcc;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.9rem;
+      background-color: #00cc99;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #00b386;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Book Badminton Court</h2>
+
+    <form id="bookingForm">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="10-digit phone number" required>
+
+      <label for="slot">Select Time Slot</label>
+      <select id="slot" required>
+        <option value="">-- Select Slot --</option>
+        <option>6:00 AM - 7:00 AM</option>
+        <option>7:00 AM - 8:00 AM</option>
+        <option>6:00 PM - 7:00 PM</option>
+        <option>7:00 PM - 8:00 PM</option>
+      </select>
+
+      <label for="paymentMode">Payment Mode</label>
+      <select id="paymentMode" required>
+        <option value="">-- Select Payment --</option>
+        <option>Paid via UPI</option>
+        <option>Pay at Venue</option>
+      </select>
+
+      <button type="submit">Book Now</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const slot = document.getElementById('slot').value;
+      const payment = document.getElementById('paymentMode').value;
+
+      const query = new URLSearchParams({
+        name,
+        phone,
+        slot,
+        amount: 300
+      });
+
+      if (payment === "Paid via UPI") {
+        window.location.href = `payment.html?${query}`;
+      } else {
+        alert(`✅ Booking Confirmed!\nName: ${name}\nSlot: ${slot}\nPayment Mode: Pay at Venue`);
+        // You can redirect to success.html or homepage here
+      }
+    });
+  </script>
+
+</body>
+</html>
